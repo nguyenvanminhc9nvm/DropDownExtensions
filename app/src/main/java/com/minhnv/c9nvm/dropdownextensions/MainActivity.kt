@@ -12,7 +12,10 @@ class MainActivity : AppCompatActivity() {
         val dpDemo: DropDown = findViewById(R.id.dpDemo)
         val list = mutableListOf(
             DropDownObj("1"),
-            DropDownObj("2")
+            DropDownObj("2"),
+            DropDownObj("3"),
+            DropDownObj("4"),
+            DropDownObj("5")
         )
         //not needed
         dpDemo.setBackgroundItemSelected(R.color.design_default_color_secondary_variant)
