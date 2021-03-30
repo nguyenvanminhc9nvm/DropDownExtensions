@@ -5,7 +5,7 @@
         <attr name="setTextDropDown" format="string" localization="suggested" />
         <attr name="setBackground" format="reference" />
         <attr name="setIconArrow" format="reference" />
-        <attr name="setTextColor" format="integer" />
+        <attr name="setTextColor" format="reference" />
         <attr name="setTextSize" format="dimension" />
     </declare-styleable>
 </resources>

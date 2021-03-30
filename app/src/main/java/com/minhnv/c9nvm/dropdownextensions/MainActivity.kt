@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
             DropDownObj("5")
         )
         //not needed
-        dpDemo.setBackgroundItemSelected(R.color.design_default_color_secondary_variant)
         dpDemo.setListData(list)
         dpDemo.addOnSelectedChangeListener(object : DropDown.OnSelectedListener {
             override fun onSelected(text: String, position: Int) {

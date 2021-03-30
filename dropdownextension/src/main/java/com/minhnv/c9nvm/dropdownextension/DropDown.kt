@@ -7,10 +7,7 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -32,16 +29,18 @@ class DropDown @JvmOverloads constructor(
     private val imageView = ImageView(context)
 
     init {
+        this.addView(textView)
+        this.addView(imageView)
         context.theme.obtainStyledAttributes(attrs, R.styleable.DropDown, 0, 0).apply {
             try {
-                textView.hint = getString(R.styleable.DropDown_setHint) ?: ""
+                textView.hint = getString(R.styleable.DropDown_setHint) ?: "hint"
                 textView.text = getString(R.styleable.DropDown_setTextDropDown) ?: ""
-                imageView.setImageDrawable(getDrawable(R.styleable.DropDown_setIconArrow))
+                imageView.setImageResource(getResourceId(R.styleable.DropDown_setIconArrow, R.drawable.ic_baseline_keyboard_arrow_down_24))
                 background = getDrawable(R.styleable.DropDown_setBackground)
                 textView.setTextColor(getColor(R.styleable.DropDown_setTextColor, Color.BLACK))
                 textView.setTextSize(
                     TypedValue.COMPLEX_UNIT_PX,
-                    getDimension(R.styleable.DropDown_setTextSize, 10f)
+                    getDimension(R.styleable.DropDown_setTextSize, 50f)
                 )
             } finally {
                 recycle()
@@ -50,21 +49,14 @@ class DropDown @JvmOverloads constructor(
         this.orientation = HORIZONTAL
         background = ContextCompat.getDrawable(context, R.drawable.bg_dropdown)
         textView.apply {
-            hint = "hint"
             includeFontPadding = false
-            setTextColor(Color.BLACK)
             setPadding(context.convertDpToPixel(10f))
-            setTextSize(TypedValue.COMPLEX_UNIT_PX, 50f)
             layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, 9f)
             gravity = Gravity.CENTER_VERTICAL
         }
-
         imageView.apply {
-            setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
             layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, 1f)
         }
-        this.addView(textView)
-        this.addView(imageView)
         initClick()
         invalidate()
         requestLayout()
@@ -72,12 +64,13 @@ class DropDown @JvmOverloads constructor(
 
     private fun initClick() {
         this.setOnClickListener {
-            popupWindow.width = width
+            popupWindow.width = this.width
             PopupWindowCompat.showAsDropDown(popupWindow, this, 0, 0, Gravity.CENTER)
         }
     }
 
     private var limitItem = 5
+    private var heightPopUp : Int = 200
     private var backgroundOrColor = ContextCompat.getColor(context, R.color.ltgray)
 
     fun <T : DropDownTemplate> setListData(list: MutableList<T>) {
@@ -90,7 +83,7 @@ class DropDown @JvmOverloads constructor(
         popupWindow = PopupWindow(
             dropdownView,
             width,
-            this.context.resources.displayMetrics.densityDpi * count * (10 * limitItem) / 200,
+            this.context.resources.displayMetrics.densityDpi * count * (10 * limitItem) / heightPopUp,
             true
         )
         val dropDownAdapter = DropDownAdapter(backgroundOrColor, this, list)
@@ -125,6 +118,15 @@ class DropDown @JvmOverloads constructor(
     //function setting
     fun setLimitedItem(limit: Int) {
         limitItem = limit
+        when (limit) {
+            5 -> this.heightPopUp = 200
+            6 -> this.heightPopUp = 240
+            7 -> this.heightPopUp = 280
+            8 -> this.heightPopUp = 320
+            9 -> this.heightPopUp = 360
+            10 -> this.heightPopUp = 400
+            else -> throw Exception("limit need range in 5..10")
+        }
     }
 
     val text get() = textView.text.toString()
@@ -138,5 +140,9 @@ class DropDown @JvmOverloads constructor(
 
     fun removeHint() {
         textView.hint = ""
+    }
+
+    fun setHint(hint: String) {
+        textView.hint = hint
     }
 }
