@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DropDown">
+        <attr name="hint" format="string" />
+        <attr name="textValue" format="string" localization="suggested" />
+        <attr name="background" format="reference" />
+        <attr name="icon_arrow" format="reference" />
+        <attr name="paddingTop" format="dimension" />
+        <attr name="paddingBottom" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="paddingLeft" format="dimension" />
+        <attr name="paddingRight" format="dimension" />
+        <attr name="backgrounds" format="integer" />
+        <attr name="textSizeItemSelected" format="dimension"/>
+        <attr name="arrowLeft" format="reference"/>
+    </declare-styleable>
+</resources>

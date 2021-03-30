@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DropDown">
+        <attr name="setHint" format="string" />
+        <attr name="setTextDropDown" format="string" localization="suggested" />
+        <attr name="setBackground" format="reference" />
+        <attr name="setIconArrow" format="reference" />
+        <attr name="setTextColor" format="integer" />
+        <attr name="setTextSize" format="dimension" />
+    </declare-styleable>
+</resources>
