@@ -2,6 +2,7 @@
 Đây là thư viện DropDown 
 
 <img src="https://github.com/nguyenvanminhc9nvm/DropDownExtensions/blob/master/anhdemo.png" width="400" height="800" />
+<img src="https://github.com/nguyenvanminhc9nvm/DropDownExtensions/blob/master/anhgifs.gif" width="400" height="800" />
 
 Cách sử dụng 
 
